@@ -101,6 +101,9 @@ bindsym $mod+Shift+t exec ~/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
 bindsym $mod+Print exec scrot '/home/mgebbe/Bilder/%Y-%m-%d-%H-%M-%S_$wx$h.png'
 bindsym $mod+Shift+Print exec scrot -u '/home/mgebbe/Bilder/%Y-%m-%d-%H-%M-%S_$wx$h.png'
 
+# settings
+bindsym $mod+Shift+S exec "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
