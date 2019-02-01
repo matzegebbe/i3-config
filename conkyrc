@@ -47,8 +47,8 @@ ${font DejaVu Sans Mono:bold:size=15}
 ${voffset -20}${goto 40}${alignc}Battery: ${battery_percent BAT0}%
 ${font DejaVu Sans Mono:bold:size=10}
 ${alignc}1m:${loadavg 1} 5m:${loadavg 2}
-${loadgraph 20,120 888888 FFFFFF -l}
-${cpugraph 26,190 FFFFFF FFFFFF -l}
+${alignc}${loadgraph 20,120 888888 FFFFFF -l}
+${alignc}${cpugraph 26,190 FFFFFF FFFFFF -l}
 ${goto 40}Cpu:${alignr 39}${cpu}%
 
 ${goto 40}${memgraph 26,190 FFFFFF FFFFFF -l}
