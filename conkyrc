@@ -1,0 +1,96 @@
+conky.config = {
+
+background = true,
+update_interval = 1,
+double_buffer = true,
+no_buffers = true,
+text_buffer_size = 2048,
+
+gap_x = 0,
+gap_y = 20,
+minimum_width = 200, minimum_height = 1200,
+maximum_width = 400,
+own_window = true,
+own_window_transparent = false,
+own_window_argb_visual = true,
+own_window_argb_value = 125,
+own_window_class = 'conky-semi',
+own_window_type = 'override',
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+border_inner_margin = 0,
+border_outer_margin = 0,
+
+-- monitor
+xinerama_head = 2,
+alignment = 'top_right',
+
+draw_shades = false,
+draw_outline = false,
+draw_borders = false,
+draw_graph_borders = false,
+
+override_utf8_locale = true,
+use_xft = true,
+xftalpha = 0.5,
+uppercase = false,
+
+-- Defining colors
+default_color = '#FFFFFF',
+};
+
+conky.text = [[
+${voffset 5}${font Open Sans Light:size=20}${time %A}, ${time %B} ${time %e}${font}${voffset -5}
+${voffset 5}${font Open Sans Light:size=50}${time %H:%M:%S}${font}${voffset -5}
+
+${goto 5}${color1}${font Monospace:bold:size=10}SYSTEM ${color3}${stippled_hr 2}
+${font DejaVu Sans Mono:bold:size=15}
+${voffset -20}${goto 40}${alignc}Battery: ${battery_percent BAT0}%
+${font DejaVu Sans Mono:bold:size=10}
+${alignc}1m:${loadavg 1} 5m:${loadavg 2}
+${loadgraph 20,120 888888 FFFFFF -l}
+${cpugraph 26,190 FFFFFF FFFFFF -l}
+${goto 40}Cpu:${alignr 39}${cpu}%
+
+${goto 40}${memgraph 26,190 FFFFFF FFFFFF -l}
+${goto 40}Mem:${alignr 39}${memperc}%
+
+${goto 40}${diskiograph 26,190 FFFFFF FFFFFF -l}
+${goto 40}Disk I/O:${alignr 39}${diskio}
+${hr 2}
+\
+# Network
+\
+${if_existing /proc/net/route enp0s31f6}
+${goto 40}${upspeedgraph enp0s31f6 26,80 FFFFFF FFFFFF}${goto 150}${downspeedgraph enp0s31f6 26,80 FFFFFF FFFFFF}
+${goto 40}${color5}Up: ${color2}${upspeed enp0s31f6}${color5}${goto 150}Down: ${color2}${downspeed enp0s31f6}
+${goto 40}${color5}Sent: ${color2}${totalup enp0s31f6}${color5}${goto 150}Received: ${color2}${totaldown enp0s31f6}
+${endif}
+${if_existing /proc/net/route wlp1s0}
+${goto 40}${upspeedgraph wlp1s0 26,80 FFFFFF FFFFFF}${goto 150}${downspeedgraph wlp1s0 26,80 FFFFFF FFFFFF}
+${goto 40}${color5}Up: ${color2}${upspeed wlp1s0}${color5}${goto 150}Down: ${color2}${downspeed wlp1s0}
+${goto 40}${color5}Sent: ${color2}${totalup wlp1s0}${color5}${goto 150}Received: ${color2}${totaldown wlp1s0}
+${endif}
+${hr 2}
+
+Disk:
+${fs_bar /}
+${fs_used /}/${fs_size /}  
+
+${hr 2}
+
+${goto 40}${color1}Proc${color}${alignr 39}${color1}${color1}Mem${color}
+${goto 40}${color2}${top_mem name 1}${color}${alignr 39}${top_mem mem_res 1}
+${goto 40}${color2}${top_mem name 2}${color}${alignr 39}${top_mem mem_res 2}
+${goto 40}${color2}${top_mem name 3}${color}${alignr 39}${top_mem mem_res 3}
+${goto 40}${color2}${top_mem name 4}${color}${alignr 39}${top_mem mem_res 4}
+${goto 40}${color2}${top_mem name 5}${color}${alignr 39}${top_mem mem_res 5}
+
+${goto 40}${color1}Proc${color}${alignr 39}${color1}Cpu %${color}
+${goto 40}${color2}${top_mem name 1}${color}${alignr 39}${top cpu 1} %
+${goto 40}${color2}${top_mem name 2}${color}${alignr 39}${top cpu 2} %
+${goto 40}${color2}${top_mem name 3}${color}${alignr 39}${top cpu 3} %
+${goto 40}${color2}${top_mem name 4}${color}${alignr 39}${top cpu 4} %
+${goto 40}${color2}${top_mem name 5}${color}${alignr 39}${top cpu 5} %
+${hr 2}
+
+]];
