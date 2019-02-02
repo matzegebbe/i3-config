@@ -27,12 +27,23 @@ bindsym $mod+z exec i3lock -c 000000
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+Q kill
+#bindsym $mod+Shift+Q 
 bindsym $mod+F4 kill
+
+set $Power "[S]leep, [p]oweroff, [l]ogoff or [r]eboot?"
+bindsym $mod+q mode $Power
+
+mode $Power {
+    bindsym s exec /usr/local/bin/suspend; mode "default"
+    bindsym p exec poweroff
+    bindsym r exec reboot
+    bindsym l exec i3-msg exit
+    bindsym Escape mode "default"
+}
 
 # i3win find a windows
 #bindsym $mod+g exec i3win
-bindsym $mod+g exec ~/bin/i3switch $(dmenu -p "workspace:" 0>&-)
+bindsym $mod+g exec ~/.i3/bin/i3switch $(dmenu -p "workspace:" 0>&-)
 bindsym $mod+Shift+F exec i3win 
 bindsym $mod+y exec i3win
 
@@ -91,16 +102,27 @@ bindsym $mod+F9 border normal
 bindsym $mod+F10 border 1pixel
 # move to workspace
 
-bindsym $mod+t exec ~/bin/i3switch $(dmenu -p "workspace:" 0>&-)
+bindsym $mod+t exec ~/.i3/bin/i3switch $(dmenu -p "workspace:" 0>&-)
 #bindsym $mod+Shift+t         exec /home/mgebbe/bin/i3move   $(dmenu -p "move to workspace:" 0>&-)
 #bindsym $mod+Control+Shift+t exec /home/mgebbe/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
-bindsym $mod+Shift+t exec ~/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
+bindsym $mod+Shift+t exec ~/.i3/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
 
-# screenshots
-bindsym $mod+Print exec scrot '/home/mgebbe/Bilder/%Y-%m-%d-%H-%M-%S_$wx$h.png'
-bindsym $mod+Shift+Print exec scrot -u '/home/mgebbe/Bilder/%Y-%m-%d-%H-%M-%S_$wx$h.png'
+# Screenshots
+# Selection > Clipboard
+bindsym $mod+Print --release exec "scrot -s $HOME/Bilder/screenshot-$(date +%FT%T.%2N).png -e 'xclip -selection c -t image/png < $f'"
+bindsym $mod+Insert --release exec "scrot -s $HOME/Bilder/screenshot-$(date +%FT%T.%2N).png -e 'xclip -selection c -t image/png < $f'"
+# Full Screen > Clipboard
+bindsym Shift+Print exec "scrot $HOME/Bilder/screenshot-$(date +%FT%T.%2N).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Shift+Insert exec "scrot $HOME/Bilder/screenshot-$(date +%FT%T.%2N).png -e 'xclip -selection c -t image/png < $f'"
 
-# settings
+# Selection > File
+#bindsym Ctrl+Print --release exec "scrot -s $HOME/Screenshots/$(date +%FT%T.%2N).png"
+# Full Screen > File
+#bindsym Ctrl+Shift+Print exec "scrot $HOME/Screenshots/$(date +%FT%T.%2N).png"
+#bindsym $mod+Print exec scrot '/home/mgebbe/Bilder/%Y-%m-%d-%H-%M-%S_$wx$h.png'
+#bindsym $mod+Shift+Print exec scrot -u '/home/mgebbe/Bilder/%Y-%m-%d-%H-%M-%S_$wx$h.png'
+
+# gnmoe settings
 bindsym $mod+Shift+S exec "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 # alternatively, you can use the cursor keys:
@@ -116,7 +138,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # rename a windows
-bindsym $mod+n exec i3-msg -t command 'rename workspace '$(/home/mgebbe/bin/i3currentws.py)' to '$(dmenu -p "rename workspace:" 0>&-)
+bindsym $mod+n exec i3-msg -t command 'rename workspace to '$(dmenu -p "rename workspace:" 0>&-)
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -270,6 +292,16 @@ exec --no-startup-id compton
 exec --no-startup-id blueman-applet
 exec --no-startup-id conky -c ~/.i3/conkyrc
 
+# Change Audio Settings
+bindsym $mod+Shift+o exec --no-startup-id $HOME/.i3/bin/audio-program-sink
+bindsym $mod+o exec --no-startup-id $HOME/.i3/bin/audio-sink
+
+# Display Manager
+bindsym $mod+p exec $HOME/.i3/bin/xrandr-dmenu
+
+# WiFi-Manager
+bindsym $mod+i exec --no-startup-id $HOME/.i3/bin/wifi-dmenu
+
 # floating for pop-ups 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -277,4 +309,5 @@ for_window [window_role="ibm"] floating enable
 for_window [class="Geany"] floating enable
 for_window [class="JetBrains Toolbox"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
+for_window [class="Kazam"] floating enable
 #for_window [class="^.*"] border pixel 3
