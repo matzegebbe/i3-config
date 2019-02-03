@@ -305,4 +305,5 @@ for_window [class="Geany"] floating enable
 for_window [class="JetBrains Toolbox"] floating enable
 for_window [class="jetbrains-toolbox"] floating enable
 for_window [class="Kazam"] floating enable
+for_window [class="vlc"] floating enable
 #for_window [class="^.*"] border pixel 3

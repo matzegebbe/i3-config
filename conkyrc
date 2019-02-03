@@ -42,24 +42,21 @@ conky.text = [[
 ${voffset 5}${font Open Sans Light:size=20}${time %A}, ${time %B} ${time %e}${font}${voffset -5}
 ${voffset 5}${font Open Sans Light:size=50}${time %H:%M:%S}${font}${voffset -5}
 
-${goto 5}${color1}${font Monospace:bold:size=10}SYSTEM ${color3}${stippled_hr 2}
+${goto 5}${color1}${font Monospace:bold:size=10}System ${color3}${stippled_hr 2}
 ${font DejaVu Sans Mono:bold:size=15}
 ${voffset -20}${goto 40}${alignc}Battery: ${battery_percent BAT0}%
 ${font DejaVu Sans Mono:bold:size=10}
-${alignc}1m:${loadavg 1} 5m:${loadavg 2}
-${alignc}${loadgraph 20,120 888888 FFFFFF -l}
-${alignc}${cpugraph 26,190 FFFFFF FFFFFF -l}
-${goto 40}Cpu:${alignr 39}${cpu}%
+${goto 40}${alignc}1m:${loadavg 1} 5m:${loadavg 2}
+${goto 40}${alignc}${loadgraph 26,190 FFFFFF FFFFFFF -l}
+${goto 40}${alignc}${cpugraph 26,190 FFFFFF FFFFFF -l}
+${goto 40}CPU:${alignr 39}${cpu}%
 
 ${goto 40}${memgraph 26,190 FFFFFF FFFFFF -l}
 ${goto 40}Mem:${alignr 39}${memperc}%
 
 ${goto 40}${diskiograph 26,190 FFFFFF FFFFFF -l}
 ${goto 40}Disk I/O:${alignr 39}${diskio}
-${hr 2}
-\
-# Network
-\
+${voffset 10}${goto 5}${color1}${font Monospace:bold:size=10}Network ${color3}${stippled_hr 2}
 ${if_existing /proc/net/route enp0s31f6}
 ${goto 40}${upspeedgraph enp0s31f6 26,80 FFFFFF FFFFFF}${goto 150}${downspeedgraph enp0s31f6 26,80 FFFFFF FFFFFF}
 ${goto 40}${color5}Up: ${color2}${upspeed enp0s31f6}${color5}${goto 150}Down: ${color2}${downspeed enp0s31f6}
@@ -70,10 +67,8 @@ ${goto 40}${upspeedgraph wlp1s0 26,80 FFFFFF FFFFFF}${goto 150}${downspeedgraph 
 ${goto 40}${color5}Up: ${color2}${upspeed wlp1s0}${color5}${goto 150}Down: ${color2}${downspeed wlp1s0}
 ${goto 40}${color5}Sent: ${color2}${totalup wlp1s0}${color5}${goto 150}Received: ${color2}${totaldown wlp1s0}
 ${endif}
-${hr 2}
-
-Disk:
-${fs_bar /}
+${goto 5}${color1}${font Monospace:bold:size=10}Disk ${color3}${stippled_hr 2}
+${voffset 10}${fs_bar /}
 ${fs_used /}/${fs_size /}  
 
 ${hr 2}
@@ -91,6 +86,5 @@ ${goto 40}${color2}${top_mem name 2}${color}${alignr 39}${top cpu 2} %
 ${goto 40}${color2}${top_mem name 3}${color}${alignr 39}${top cpu 3} %
 ${goto 40}${color2}${top_mem name 4}${color}${alignr 39}${top cpu 4} %
 ${goto 40}${color2}${top_mem name 5}${color}${alignr 39}${top cpu 5} %
-${hr 2}
 
 ]];
