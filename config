@@ -30,11 +30,11 @@ bindsym $mod+z exec i3lock -c 000000
 #bindsym $mod+Shift+Q 
 bindsym $mod+F4 kill
 
-set $Power "[S]leep, [p]oweroff, [l]ogoff or [r]eboot?"
+set $Power "[s]leep, [p]oweroff, [l]ogoff or [r]eboot?"
 bindsym $mod+q mode $Power
 
 mode $Power {
-    bindsym s exec ~/.i3/bin/suspend; mode "default"
+    bindsym s exec roxterm -e sudo ~/.i3/bin/suspend; mode "default"
     bindsym p exec poweroff
     bindsym r exec reboot
     bindsym l exec i3-msg exit
