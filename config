@@ -24,7 +24,7 @@ floating_modifier $mod
 bindsym $mod+z exec i3lock -c 000000
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 #bindsym $mod+Shift+Q 
@@ -44,21 +44,16 @@ mode $Power {
 # i3win find a windows
 #bindsym $mod+g exec i3win
 bindsym $mod+g exec ~/.i3/bin/i3switch $(dmenu -p "workspace:" 0>&-)
-bindsym $mod+Shift+F exec i3win 
-bindsym $mod+y exec i3win
+bindsym $mod+y exec ~/.i3/bin/i3win
 
 # go to the next urgent workspace, latest first
 bindsym $mod+u [urgent="latest"] focus
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-#bindsym $mod+c exec dmenu_run
-bindsym $mod+c exec smenu
+bindsym $mod+c exec ~/.i3/bin/smenu/smenu
 bindsym $mod+d exec rofi -modi "ssh" -show ssh
 
 bindsym $mod+x exec roxterm
-#bindsym $mod+y exec chromium-browser 
-#bindsym $mod+x exec urxvt
 
 # change between current and last workspace
 bindsym $mod+Tab workspace back_and_forth
@@ -103,9 +98,9 @@ bindsym $mod+F10 border 1pixel
 # move to workspace
 
 bindsym $mod+t exec ~/.i3/bin/i3switch $(dmenu -p "workspace:" 0>&-)
-#bindsym $mod+Shift+t         exec /home/mgebbe/bin/i3move   $(dmenu -p "move to workspace:" 0>&-)
-#bindsym $mod+Control+Shift+t exec /home/mgebbe/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
 bindsym $mod+Shift+t exec ~/.i3/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
+bindsym $mod+Shift+u exec ~/.i3/bin/i3move   $(dmenu -p "move to workspace:" 0>&-)
+#bindsym $mod+Control+Shift+t exec /home/mgebbe/bin/i3follow $(dmenu -p "follow to workspace:" 0>&-)
 
 # Screenshots
 # Selection > Clipboard

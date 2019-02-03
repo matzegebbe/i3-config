@@ -1,0 +1,59 @@
+smenu
+=====
+A simple wrapper around dmenu which remembers your last
+choices and displays them in front of the menu. Its similiar
+to xboomx [1] but its written in Go and is not another wrapper
+around dmenu_path and dmenu_run. It has its own cache file
+and stores the names of the executable together with the
+number of calls as plain text.
+
+This Free Software under the terms of the GPLv3+. See LICENSE for details.
+(c) 2013, 2014 by Sascha L. Teichmann <teichmann@intevation.de>
+
+Installation
+------------
+
+Install suckless-tools to obtain dmenu. On a Debian like system something
+like
+
+ $ apt-get install suckless-tools
+
+will do. To build smenu you need to have a Go 1.x (x >= 1) compiler available.
+See [2] how to get one. 
+
+   $ go get bitbucket.org/s_l_teichmann/smenu
+
+And place the resulting executable 'smenu' in your PATH-.
+
+Development setup:
+
+    $ hg clone https://s_l_teichmann@bitbucket.org/s_l_teichmann/smenu
+    $ cd smenu
+    $ go build 
+
+To use it e.g with i3wm add following line to your ~/.i3/config:
+
+    bindsym $mod+d exec smenu
+
+To pass options to the call of dmenu can be just appended them
+after a '--'. So 'smenu -- -b -l 10' will result in a call of 'dmenu -b -l 10'.
+With the '-d' flag yo can specify a custom demu executable.
+This is e.g. needed if you have a HiDPI display and the standard
+font rendering is too tiny. Using the XFT patch [3] helps.
+In this case your binding may look like:
+
+   bindsym $mod+d exec smenu -d '/home/user/bin/dmenu' -- -fn DejaVuSansMono-10
+
+How does it work?
+-----------------
+smenu generates a list of executable files
+in your PATH. They are stored in a cache file in ~/.smenu_cache. Each entry
+in this file has counter how often the executable is called from smenu.
+The most frequently called executable are on the top of the list
+an therefore lead the list processed by dmenu. After calling of dmenu
+the position of the selected entry is updated in ~/.smenu_cache
+according to its increased counter.
+
+[1] https://bitbucket.org/dehun/xboomx/wiki/Home
+[2] http://golang.org/doc/install
+[3] http://tools.suckless.org/dmenu/patches/xft
