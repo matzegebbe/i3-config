@@ -268,26 +268,6 @@ bar {
         position top
 }
 
-workspace_layout tabbed
-
-#exec gnome-settings-daemon
-exec --no-startup-id nm-applet
-exec --no-startup-id gnome-sound-applet
-exec --no-startup-id pasystray
-#exec i3 layout tabbed
-exec --no-startup-id i3-msg 'workspace 1; exec roxterm -T "work work" -e $SHELL -c "vi ~/work.txt" ; workspace firefox; exec firefox;' 
-exec --no-startup-id xrdb -load ~/.Xresources
-#exec gsettings set org.gnome.settings-daemon.plugins.cursor active false
-exec xrandr --output eDP1 --auto --left-of DP1-1
-#exec --no-startup-id feh --randomize --bg-fill ~/workspace/mariobg/pics/ 
-#exec --no-startup-id i3-msg vi ~/work.txt'
-exec --no-startup-id ~/workspace/mario-background-change/change_bg.sh
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id parcellite
-exec --no-startup-id compton
-exec --no-startup-id blueman-applet
-exec --no-startup-id conky -c ~/.i3/conkyrc
-
 # Change Audio Settings
 bindsym $mod+Shift+o exec --no-startup-id $HOME/.i3/bin/audio-program-sink
 bindsym $mod+o exec --no-startup-id $HOME/.i3/bin/audio-sink
@@ -297,6 +277,26 @@ bindsym $mod+p exec $HOME/.i3/bin/xrandr-dmenu
 
 # WiFi-Manager
 bindsym $mod+i exec --no-startup-id $HOME/.i3/bin/wifi-dmenu
+
+workspace_layout tabbed
+
+#exec gnome-settings-daemon
+exec --no-startup-id pgrep nm-applet || nm-applet
+exec --no-startup-id pgrep gnome-sound-applet || gnome-sound-applet
+exec --no-startup-id pgrep pasystray || pasystray
+#exec i3 layout tabbed
+exec --no-startup-id i3-msg 'workspace 1; exec roxterm -T "work work" -e $SHELL -c "vi ~/work.txt" ; workspace firefox; exec firefox;' 
+exec --no-startup-id xrdb -load ~/.Xresources
+#exec gsettings set org.gnome.settings-daemon.plugins.cursor active false
+exec xrandr --output eDP1 --auto --left-of DP1-1
+#exec --no-startup-id feh --randomize --bg-fill ~/workspace/mariobg/pics/ 
+#exec --no-startup-id i3-msg vi ~/work.txt'
+exec --no-startup-id ~/workspace/mario-background-change/change_bg.sh
+exec --no-startup-id pgrep xfce4-power-manager || xfce4-power-manager
+exec --no-startup-id pgrep parcellite || parcellite
+exec --no-startup-id pgrep compton || compton
+exec --no-startup-id pgrep blueman-applet || blueman-applet
+exec --no-startup-id pgrep conky || conky -c ~/.i3/conkyrc
 
 # floating for pop-ups 
 for_window [window_role="pop-up"] floating enable
