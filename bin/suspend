@@ -2,4 +2,5 @@
 
 set -e
 
-i3lock -c 000000 && sh -c 'echo mem > /sys/power/state'
+#i3lock -c 000000 & echo mem > /sys/power/state
+i3lock -c 000000 & sudo pm-suspend
