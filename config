@@ -283,7 +283,7 @@ exec xrandr --output eDP1 --auto --left-of DP1-1
 #exec --no-startup-id i3-msg vi ~/work.txt'
 exec --no-startup-id ~/workspace/mario-background-change/change_bg.sh
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xfce4-clipman
+exec --no-startup-id parcellite
 exec --no-startup-id compton
 exec --no-startup-id blueman-applet
 exec --no-startup-id conky -c ~/.i3/conkyrc
