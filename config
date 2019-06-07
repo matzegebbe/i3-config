@@ -21,7 +21,9 @@ floating_modifier $mod
 
 #i3lock
 #bindsym $mod+z exec xlock -remote #exec i3lock
-bindsym $mod+z exec i3lock -c 000000
+
+#bindsym $mod+z exec i3lock -c 000000
+bindsym $mod+z exec i3lock -t -i /home/mgebbe/Bilder/faz.png
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
@@ -294,7 +296,7 @@ exec xrandr --output eDP1 --auto --left-of DP1-1
 exec --no-startup-id ~/workspace/mario-background-change/change_bg.sh
 exec --no-startup-id pgrep xfce4-power-manager || xfce4-power-manager
 exec --no-startup-id pgrep parcellite || parcellite
-exec --no-startup-id pgrep compton || compton
+exec --no-startup-id pgrep compton || compton --config ~/.i3/compton.conf
 exec --no-startup-id pgrep blueman-applet || blueman-applet
 exec --no-startup-id pgrep conky || conky -c ~/.i3/conkyrc
 
