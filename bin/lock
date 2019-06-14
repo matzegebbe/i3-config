@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+set -e
+
+i3lock -t -i ~/Bilder/Selection_905.png
