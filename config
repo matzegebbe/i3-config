@@ -82,7 +82,7 @@ bindsym $mod+Shift+L move up
 bindsym $mod+Shift+Odiaeresis move right
 
 # move workspace to other window
-bindsym $mod+m move workspace to output right
+bindsym $mod+m exec ~/.i3/bin/toggle_mute.sh
 bindsym $mod+Shift+M move workspace to output left
 
 # next workspace
