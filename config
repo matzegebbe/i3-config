@@ -299,7 +299,7 @@ exec --no-startup-id pgrep parcellite || parcellite
 exec --no-startup-id pgrep compton || compton --config ~/.i3/compton.conf
 exec --no-startup-id pgrep blueman-applet || blueman-applet
 exec --no-startup-id pgrep conky || conky -c ~/.i3/conkyrc
-
+exec --no-startup-id pgrep system-config-printer-applet || system-config-printer-applet
 # floating for pop-ups 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
