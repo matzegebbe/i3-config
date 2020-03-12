@@ -55,7 +55,7 @@ bindsym $mod+u [urgent="latest"] focus
 bindsym $mod+c exec ~/.i3/bin/smenu/smenu
 bindsym $mod+d exec rofi -modi "ssh" -show ssh
 
-bindsym $mod+x exec roxterm
+bindsym $mod+x exec xfce4-terminal
 
 # change between current and last workspace
 bindsym $mod+Tab workspace back_and_forth
@@ -300,6 +300,10 @@ exec --no-startup-id pgrep compton || compton --config ~/.i3/compton.conf
 exec --no-startup-id pgrep blueman-applet || blueman-applet
 exec --no-startup-id pgrep conky || conky -c ~/.i3/conkyrc
 exec --no-startup-id pgrep system-config-printer-applet || system-config-printer-applet
+exec --no-startup-id pgrep nextcloud | nextcloud
+#Store your configuration with autorandr --save work (I'm storing my work config, choose a name that suits you)
+#Resume the config with autorandr --change work to choose config, or just autorandr --change to have it infer your config from your connected monitors.
+exec --no-startup-id autorandr --change
 # floating for pop-ups 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
